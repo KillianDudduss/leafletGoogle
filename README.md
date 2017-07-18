@@ -23,7 +23,7 @@ This is a quick example of how you need to use the package :
 ```r
 # In the UI part of the app (before you use any of the functions from the package):
 
-library(leafletGoogle2)
+library(leafletGoogle)
 
 shinyUI(bootstrapPage(
      useLeafletGoogle(),
