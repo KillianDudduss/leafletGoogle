@@ -11,7 +11,7 @@ You can install this package using the development version from Github:
 ```r
 # Github version
 if (!require('devtools')) install.packages('devtools')
-devtools::install_github('KillianDudduss/LeafletGoogle2')
+devtools::install_github('KillianDudduss/leafletGoogle')
 ```
 
 ## Use it in an R script
