@@ -1,4 +1,4 @@
-Package: LeafletGoogle
+Package: leafletGoogle
 Title: What the Package Does (one line, title case)
 Version: 0.0.1.9000
 Authors@R: person("Killian", "Dusautiez", email = "mister.monkii@gmail.com", role = c("aut", "cre"))
