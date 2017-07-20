@@ -1240,7 +1240,7 @@ methods.addTiles = function (urlTemplate, layerId, group, options) {
   this.layerManager.addLayer(_leaflet2.default.tileLayer(urlTemplate, options), "tile", layerId, group);
 };
 
-methods.addGoogleTiles = function( layerId, group, options) {
+methods.addGoogleTiles = function( layerId, group, options, type) {
   this.layerManager.addLayer(L.gridLayer.googleMutant({type : type}), "tile", layerId, group);
 };
 
