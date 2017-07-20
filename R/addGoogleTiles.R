@@ -126,11 +126,12 @@ polygonBoundaries <- function (liste){
 #' User functions :
 #'
 #' Make the package more user friendly (you need to use this function into the ui part of your shinny Application)
+#' @param apikey the api-key you want to use for your application (you need to use a valid key)
 #' @return a tags$head that will be usefull to load the references js/css
 #' @export
 #' useLeafletGoogle
 
-useLeafletGoogle <- function (){
+useLeafletGoogle <- function (apikey){
   if(!isNamespaceLoaded("leaflet")){
     warning("Install and load the leaflet package", call. = FALSE)
     install.packages("leaflet")
@@ -141,8 +142,14 @@ useLeafletGoogle <- function (){
     install.packages("shiny")
     library(shiny)
   }
-  return(tags$head(tags$script(src="https://cdn.rawgit.com/KillianDudduss/sharedObject/master/LeafletGoogle2-Data/1.0.3/dist/leaflet.js"),
-                   tags$script(src="https://cdn.rawgit.com/KillianDudduss/sharedObject/master/LeafletGoogle2-Data/function.js"),
-                   tags$script(src="https://cdn.rawgit.com/KillianDudduss/sharedObject/master/LeafletGoogle2-Data/maps.js"),
-                   tags$script(src='https://cdn.rawgit.com/KillianDudduss/sharedObject/master/LeafletGoogle2-Data/Leaflet.GoogleMutant.js')))
+  
+  api <- as.character(apikey) 
+  link <- "https://maps.googleapis.com/maps/api/js?key="
+  
+  googlelink <- paste(link,api, sep="")
+  
+  return(tags$head(tags$script(src="https://cdn.rawgit.com/KillianDudduss/leafletGoogle/master/data/1.0.3/dist/leaflet.js"),
+                   tags$script(src="https://cdn.rawgit.com/KillianDudduss/leafletGoogle/master/data/function.js"),
+                   tags$script(src=googlelink),
+                   tags$script(src='https://cdn.rawgit.com/KillianDudduss/leafletGoogle/master/data/Leaflet.GoogleMutant.js')))
 }
