@@ -4,7 +4,10 @@
 \alias{useLeafletGoogle}
 \title{User functions :}
 \usage{
-useLeafletGoogle()
+useLeafletGoogle(apikey)
+}
+\arguments{
+\item{apikey}{the api-key you want to use for your application (you need to use a valid key)}
 }
 \value{
 a tags$head that will be usefull to load the references js/css
