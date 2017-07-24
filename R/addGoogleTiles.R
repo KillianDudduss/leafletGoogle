@@ -153,3 +153,46 @@ useLeafletGoogle <- function (apikey){
                    tags$script(src=googlelink),
                    tags$script(src='https://cdn.rawgit.com/KillianDudduss/leafletGoogle/master/data/Leaflet.GoogleMutant.js')))
 }
+
+#' User functions :
+#'
+#' Use the package without shiny (this function works with the other function addGTiles)
+#' @param map the leaflet map
+#' @param apikey the api-key you want to use for your application (you need to use a valid key)
+#' @return the option to use the google base tile on leaflet without shiny 
+#' @export
+#' initPlugin
+
+initPlugin <- function(map,apikey){
+  api <- as.character(apikey) 
+  link <- "https://maps.googleapis.com/maps/api/js?key="
+  googlelink <- paste(link,api, sep="")
+  link <- paste("<script src='",googlelink,"'></script>",sep="")
+  
+  L.Google <- htmlDependency("leaflet.Google", "1.0.3",
+                             head = link,
+                             src = c(href = "https://cdn.rawgit.com/KillianDudduss/sharedObject/master/LeafletGoogle2-Data/"),
+                             script = c("leaflet-google.js"),
+                             stylesheet = "leaflet-top.css"
+  )
+  registerPlugin <- function(map, plugin) {
+    map$dependencies <- c(map$dependencies, list(plugin))
+    return(map)
+  }
+  return( registerPlugin(map, plugin = L.Google))
+}
+
+#' Graphics elements and layers :
+#'
+#' Add the google layer to the map widget (without shiny).
+#' @param map the leaflet map
+#' @return the leaflet google layer map 
+#' @export
+#' addGTiles
+
+addGTiles <- function(map){
+  rtn <- onRender(map, jsCode = 'function(el, x) {
+                  var googleLayer = new L.Google("ROADMAP");
+                  this.addLayer(googleLayer);}')
+  return(rtn)
+}
