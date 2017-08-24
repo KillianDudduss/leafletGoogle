@@ -14,11 +14,11 @@ if (!require('devtools')) install.packages('devtools')
 devtools::install_github('KillianDudduss/leafletGoogle')
 ```
 
-## Use it in an R script
+## Use it in an R script with Shiny
 
-There are some things you will need to do to use the package,
+In the package you have to use differents functions if you wish to use the package with or without shiny,
 
-This is a quick example of how you need to use the package :
+This is the example when you decide to use Shiny :
 
 ```r
 # In the UI part of the app (before you use any of the functions from the package):
@@ -46,4 +46,34 @@ shinyServer(function(input, output,session) {
       # Some code after you have called the function
 }
 ```
+
+## Use it in an R script without Shiny
+
+This option is the second option, if you decide to run run some code, such as base leaflet functions or if you need to use packages such as mapView
+
+This is an example (that works with base R, there are some problems with Rstudio) with the use of the mapview package :
+
+```r
+# 
+
+library(leaflet)
+library(htmltools)
+library(htmlwidgets)
+library(mapview)
+library(leafletGoogle)
+
+# You need to insert a valid api google key to run the example 
+apikey <- "INSERT YOU API KEY HERE"
+
+leaflet() %>% setView(-122.23, 37.75, zoom = 10) %>%
+  # The next function allow you to use the function addGTiles()
+  initPlugin(apikey = apikey) %>%
+  # You can now use the function addGTiles()
+  addGTiles() %>%
+  # I decide to use the function addMouseCoordinates() 
+  # to show that the mapview package is working with the leafletGoogle package
+  addMouseCoordinates(style = "basic")
+
+```
+
 
