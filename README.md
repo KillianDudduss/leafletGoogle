@@ -54,8 +54,6 @@ This option is the second option, if you decide to run run some code, such as ba
 This is an example (that works with base R, there are some problems with Rstudio) with the use of the mapview package :
 
 ```r
-# 
-
 library(leaflet)
 library(htmltools)
 library(htmlwidgets)
